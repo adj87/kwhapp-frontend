@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import styled, { withTheme } from "styled-components";
+import DarkModeSwitch from "../components/Switch";
 
 const Kwh = styled.span`
   font-family: Poppins Black;
@@ -46,6 +47,7 @@ const SubTitle2 = styled.span`
 `;
 
 const Header = () => {
+  const [darkMode, setDarkMode] = useState(false);
   return (
     <Wrapper>
       <WrapperTitle>
@@ -56,7 +58,7 @@ const Header = () => {
         <SubTitle1>Control your consumption</SubTitle1>
         <SubTitle2>and save the planet</SubTitle2>
       </WrapperSubTitle>
-      <span style={{ color: "white", alignSelf: "flex-end" }}>Switch</span>
+      <DarkModeSwitch onClick={setDarkMode} on={darkMode} />
     </Wrapper>
   );
 };
