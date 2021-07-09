@@ -5,6 +5,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
+  padding: 2rem;
 `;
 
 const CreatedBy = styled.span`
@@ -24,7 +25,7 @@ const Footer = () => {
   return (
     <Wrapper>
       <CreatedBy>from mr_jaurewi</CreatedBy>
-      <AllRightsReserved>{`${new Date().getFullYear()} © all My rights reserver`}</AllRightsReserved>
+      <AllRightsReserved>{`${new Date().getFullYear()} © all my rights reserved`}</AllRightsReserved>
     </Wrapper>
   );
 };
