@@ -8,12 +8,6 @@ const SwitchStyled = styled.label`
   height: 34px;
 `;
 
-const Input = styled.input`
-  opacity: 0;
-  width: 0;
-  height: 0;
-`;
-
 const Slider = styled.span`
   position: absolute;
   cursor: pointer;
