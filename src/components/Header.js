@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import styled, { withTheme } from "styled-components";
+import { faMoon } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DarkModeSwitch from "../components/Switch";
 
 const Kwh = styled.span`
@@ -48,7 +50,9 @@ const SubTitle2 = styled.span`
 `;
 
 const DarkModeSwitchWrapper = styled.div`
+  display: flex;
   align-self: flex-end;
+  align-items: center;
 `;
 
 const Header = () => {
@@ -64,6 +68,12 @@ const Header = () => {
         <SubTitle2>and save the planet</SubTitle2>
       </WrapperSubTitle>
       <DarkModeSwitchWrapper>
+        <FontAwesomeIcon
+          icon={faMoon}
+          color="white"
+          size="1x"
+          style={{ marginRight: "8px" }}
+        />
         <DarkModeSwitch onClick={setDarkMode} on={darkMode} />
       </DarkModeSwitchWrapper>
     </Wrapper>

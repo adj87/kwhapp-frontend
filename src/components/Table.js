@@ -15,6 +15,7 @@ const Styles = styled.div`
         color: ${({ theme }) => theme.palette.grey[1]};
         border-bottom: ${({ theme }) => `2px solid ${theme.palette.grey[1]}`};
         padding: 10px 50px;
+        font-family: Poppins ExtraBold;
       }
     }
     tr {
