@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import styled, { withTheme } from "styled-components";
 import { faMoon } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import DarkModeSwitch from "../components/Switch";
+import { MainContext } from "../contexts/MainContext";
 
 const Kwh = styled.span`
   font-family: Poppins Black;
@@ -56,7 +57,7 @@ const DarkModeSwitchWrapper = styled.div`
 `;
 
 const Header = () => {
-  const [darkMode, setDarkMode] = useState(false);
+  const { darkMode, setDarkMode } = useContext(MainContext);
   return (
     <Wrapper>
       <WrapperTitle>
