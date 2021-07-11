@@ -15,6 +15,7 @@ export const theme = {
       6: "#70E000",
       7: "#9EF01A",
     },
+
     blue: "#1AE3F0",
     error: "#FF5858",
     success: "#47ad34",
@@ -22,6 +23,7 @@ export const theme = {
       1: "#2D3748",
       2: "#ACB4C2",
     },
+    bodyColor: "aliceblue",
   },
 };
 
