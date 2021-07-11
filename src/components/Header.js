@@ -66,7 +66,7 @@ const Header = () => {
       </WrapperTitle>
       <WrapperSubTitle>
         <SubTitle1>Control your consumption</SubTitle1>
-        <SubTitle2>and save the planet</SubTitle2>
+        <SubTitle2>and save the planet 🌍 </SubTitle2>
       </WrapperSubTitle>
       <DarkModeSwitchWrapper>
         <FontAwesomeIcon
