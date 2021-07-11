@@ -40,6 +40,16 @@ const Styles = styled.div`
       }
     }
 
+    tbody {
+      tr {
+        cursor: pointer;
+        transition: all 0.4s;
+        &:hover {
+          transform: translateX(4px);
+        }
+      }
+    }
+
     th,
     td {
       color: ${({ darkMode, theme }) =>
