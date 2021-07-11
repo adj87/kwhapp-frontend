@@ -1,8 +1,15 @@
 import React, { useContext } from "react";
 import styled, { withTheme } from "styled-components";
-import { useTable, useSortBy } from "react-table";
+import { useTable, useSortBy, usePagination } from "react-table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import {
+  faAngleDown,
+  faAngleUp,
+  faAngleLeft,
+  faAngleDoubleLeft,
+  faAngleRight,
+  faAngleDoubleRight,
+} from "@fortawesome/free-solid-svg-icons";
 import { MainContext } from "../contexts/MainContext";
 
 const Styles = styled.div`
@@ -10,7 +17,7 @@ const Styles = styled.div`
 
   table {
     border-spacing: 0;
-
+    width: 100%;
     thead {
       th {
         color: ${({ theme }) => theme.palette.grey[1]};
@@ -50,16 +57,52 @@ const Styles = styled.div`
   }
 `;
 
+const NavigationButton = styled.button`
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+  background-color: ${({ theme, darkMode }) =>
+    darkMode ? theme.palette.grey[2] : theme.palette.grey[1]};
+  color: ${({ theme, darkMode }) =>
+    !darkMode ? theme.palette.grey[2] : theme.palette.grey[1]};
+  border: none;
+  border-radius: 5px;
+`;
+
+const NavigationResume = styled.span`
+  font-family: Poppins Black;
+  color: ${({ theme, darkMode }) =>
+    !darkMode ? theme.palette.grey[2] : theme.palette.grey[1]};
+`;
+
 function Table({ columns, data, onRowClick }) {
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
-    useTable(
-      {
-        columns,
-        data,
+  const { darkMode } = useContext(MainContext);
+  const {
+    getTableProps,
+    getTableBodyProps,
+    headerGroups,
+    page,
+    prepareRow,
+    gotoPage,
+    previousPage,
+    canPreviousPage,
+    canNextPage,
+    nextPage,
+    pageCount,
+    pageOptions,
+    state: { pageIndex, pageSize },
+  } = useTable(
+    {
+      columns,
+      data,
+      initialState: {
+        pageIndex: 0,
+        pageSize: 5,
       },
-      useSortBy
-    );
-  const firstPageRows = rows.slice(0, 20);
+    },
+    useSortBy,
+    usePagination
+  );
 
   return (
     <>
@@ -106,10 +149,10 @@ function Table({ columns, data, onRowClick }) {
           ))}
         </thead>
         <tbody {...getTableBodyProps()}>
-          {firstPageRows.map((row, i) => {
+          {page.map((row, i) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()} onClick={() => console.log(row)}>
+              <tr {...row.getRowProps()}>
                 {row.cells.map((cell) => {
                   return (
                     <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
@@ -120,8 +163,49 @@ function Table({ columns, data, onRowClick }) {
           })}
         </tbody>
       </table>
+      <tfoot
+        style={{
+          display: "flex",
+          width: "80%",
+          margin: "auto",
+          alignContent: "center",
+          justifyContent: "space-around",
+          marginTop: "10px",
+        }}
+      >
+        <NavigationButton
+          darkMode={darkMode}
+          onClick={() => gotoPage(0)}
+          disabled={!canPreviousPage}
+        >
+          <FontAwesomeIcon icon={faAngleLeft} />
+        </NavigationButton>
+        <NavigationButton
+          darkMode={darkMode}
+          onClick={() => previousPage()}
+          disabled={!canPreviousPage}
+        >
+          <FontAwesomeIcon icon={faAngleDoubleLeft} />
+        </NavigationButton>
+        <NavigationResume>
+          {pageIndex + 1} of {pageOptions.length}
+        </NavigationResume>
+        <NavigationButton
+          darkMode={darkMode}
+          onClick={() => nextPage()}
+          disabled={!canNextPage}
+        >
+          <FontAwesomeIcon icon={faAngleRight} />
+        </NavigationButton>
+        <NavigationButton
+          darkMode={darkMode}
+          onClick={() => gotoPage(pageCount - 1)}
+          disabled={!canNextPage}
+        >
+          <FontAwesomeIcon icon={faAngleDoubleRight} />
+        </NavigationButton>
+      </tfoot>
       <br />
-      <div>Showing the first 20 results of {rows.length} rows</div>
     </>
   );
 }
