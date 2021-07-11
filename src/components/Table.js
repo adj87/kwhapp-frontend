@@ -11,6 +11,7 @@ import {
   faAngleDoubleRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { MainContext } from "../contexts/MainContext";
+import Button from "./Button";
 
 const Styles = styled.div`
   padding: 1rem;
@@ -75,7 +76,22 @@ const NavigationResume = styled.span`
     !darkMode ? theme.palette.grey[2] : theme.palette.grey[1]};
 `;
 
-function Table({ columns, data, onRowClick }) {
+const Tfoot = styled.tfoot`
+  display: flex;
+  width: 80%;
+  margin: auto;
+  align-content: center;
+  justify-content: space-around;
+  margin-top: 10px;
+`;
+
+const ButtonWrapper = styled.div`
+  float: right;
+  width: 25%;
+  margin-top: 20px;
+`;
+
+function Table({ columns, data, onRowClick, onAdd }) {
   const { darkMode } = useContext(MainContext);
   const {
     getTableProps,
@@ -163,16 +179,7 @@ function Table({ columns, data, onRowClick }) {
           })}
         </tbody>
       </table>
-      <tfoot
-        style={{
-          display: "flex",
-          width: "80%",
-          margin: "auto",
-          alignContent: "center",
-          justifyContent: "space-around",
-          marginTop: "10px",
-        }}
-      >
+      <Tfoot>
         <NavigationButton
           darkMode={darkMode}
           onClick={() => gotoPage(0)}
@@ -204,17 +211,20 @@ function Table({ columns, data, onRowClick }) {
         >
           <FontAwesomeIcon icon={faAngleDoubleRight} />
         </NavigationButton>
-      </tfoot>
+      </Tfoot>
+      <ButtonWrapper>
+        <Button onClick={onAdd}>{"Add"}</Button>
+      </ButtonWrapper>
       <br />
     </>
   );
 }
 
-export default withTheme(function ({ data, columns }) {
+export default withTheme(function ({ data, columns, onAdd }) {
   const { darkMode } = useContext(MainContext);
   return (
     <Styles darkMode={darkMode}>
-      <Table columns={columns} data={data} />
+      <Table columns={columns} data={data} onAdd={onAdd} />
     </Styles>
   );
 });
