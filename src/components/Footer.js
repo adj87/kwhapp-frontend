@@ -1,11 +1,15 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
+import { MainContext } from "../contexts/MainContext";
 
 const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
   padding: 2rem;
+  background-color: ${({ theme, darkMode }) =>
+    darkMode ? theme.palette.grey[1] : theme.palette.bodyColor};
+  height: 100%;
 `;
 
 const CreatedBy = styled.span`
@@ -13,6 +17,8 @@ const CreatedBy = styled.span`
   color: ${({ theme }) => theme.palette.grey[1]};
   font-size: 20px;
   text-align: center;
+  color: ${({ theme, darkMode }) =>
+    darkMode ? "white" : theme.palette.grey[1]};
 `;
 
 const AllRightsReserved = styled.span`
@@ -22,9 +28,10 @@ const AllRightsReserved = styled.span`
 `;
 
 const Footer = () => {
+  const { darkMode } = useContext(MainContext);
   return (
-    <Wrapper>
-      <CreatedBy>from mr_jaurewi</CreatedBy>
+    <Wrapper darkMode={darkMode}>
+      <CreatedBy darkMode={darkMode}>from mr_jaurewi</CreatedBy>
       <AllRightsReserved>{`${new Date().getFullYear()} © all my rights reserved`}</AllRightsReserved>
     </Wrapper>
   );

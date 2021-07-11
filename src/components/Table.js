@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled, { withTheme } from "styled-components";
 import { useTable, useSortBy } from "react-table";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faAngleDown, faAngleUp } from "@fortawesome/free-solid-svg-icons";
+import { MainContext } from "../contexts/MainContext";
 
 const Styles = styled.div`
   padding: 1rem;
@@ -13,25 +14,35 @@ const Styles = styled.div`
     thead {
       th {
         color: ${({ theme }) => theme.palette.grey[1]};
-        border-bottom: ${({ theme }) => `2px solid ${theme.palette.grey[1]}`};
+        border-bottom: ${({ theme, darkMode }) =>
+          `3px solid ${
+            darkMode ? theme.palette.bodyColor : theme.palette.grey[1]
+          }`};
         padding: 10px 50px;
         font-family: Poppins ExtraBold;
+        color: ${({ theme, darkMode }) =>
+          darkMode ? "white" : theme.palette.grey[1]};
       }
     }
     tr {
       :last-child {
         td {
           border-bottom: 0;
-          text-align: center;
         }
       }
     }
 
     th,
     td {
+      color: ${({ darkMode, theme }) =>
+        darkMode ? theme.palette.bodyColor : theme.palette.grey[1]};
       margin: 0;
       padding: 0.5rem;
-
+      text-align: center;
+      border-bottom: ${({ theme, darkMode }) =>
+        `1px solid ${
+          darkMode ? theme.palette.bodyColor : theme.palette.grey[1]
+        }`};
       :last-child {
         border-right: 0;
       }
@@ -116,8 +127,9 @@ function Table({ columns, data, onRowClick }) {
 }
 
 export default withTheme(function ({ data, columns }) {
+  const { darkMode } = useContext(MainContext);
   return (
-    <Styles>
+    <Styles darkMode={darkMode}>
       <Table columns={columns} data={data} />
     </Styles>
   );
