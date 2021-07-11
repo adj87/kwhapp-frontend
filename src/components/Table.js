@@ -39,7 +39,7 @@ const Styles = styled.div`
   }
 `;
 
-function Table({ columns, data }) {
+function Table({ columns, data, onRowClick }) {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow } =
     useTable(
       {
@@ -98,7 +98,7 @@ function Table({ columns, data }) {
           {firstPageRows.map((row, i) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()}>
+              <tr {...row.getRowProps()} onClick={() => console.log(row)}>
                 {row.cells.map((cell) => {
                   return (
                     <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
