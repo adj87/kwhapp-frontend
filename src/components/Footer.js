@@ -7,14 +7,11 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 2rem;
-  background-color: ${({ theme, darkMode }) =>
-    darkMode ? theme.palette.grey[1] : theme.palette.bodyColor};
   height: 100%;
 `;
 
 const CreatedBy = styled.span`
   font-family: Poppins ExtraBold;
-  color: ${({ theme }) => theme.palette.grey[1]};
   font-size: 20px;
   text-align: center;
   color: ${({ theme, darkMode }) =>
