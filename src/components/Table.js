@@ -16,12 +16,12 @@ const Styles = styled.div`
         color: ${({ theme }) => theme.palette.grey[1]};
         border-bottom: ${({ theme, darkMode }) =>
           `3px solid ${
-            darkMode ? theme.palette.bodyColor : theme.palette.grey[1]
+            darkMode ? theme.palette.grey[2] : theme.palette.grey[1]
           }`};
         padding: 10px 50px;
         font-family: Poppins ExtraBold;
         color: ${({ theme, darkMode }) =>
-          darkMode ? "white" : theme.palette.grey[1]};
+          darkMode ? theme.palette.grey[2] : theme.palette.grey[1]};
       }
     }
     tr {
@@ -35,13 +35,13 @@ const Styles = styled.div`
     th,
     td {
       color: ${({ darkMode, theme }) =>
-        darkMode ? theme.palette.bodyColor : theme.palette.grey[1]};
+        darkMode ? theme.palette.grey[2] : theme.palette.grey[1]};
       margin: 0;
       padding: 0.5rem;
       text-align: center;
       border-bottom: ${({ theme, darkMode }) =>
         `1px solid ${
-          darkMode ? theme.palette.bodyColor : theme.palette.grey[1]
+          darkMode ? theme.palette.grey[2] : theme.palette.grey[1]
         }`};
       :last-child {
         border-right: 0;
