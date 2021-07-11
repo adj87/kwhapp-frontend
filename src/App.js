@@ -1,5 +1,4 @@
 import { ThemeProvider } from "styled-components";
-import "./App.css";
 import Home from "./app/Home/";
 import { theme } from "./constants";
 import { MainContextProvider } from "./contexts/MainContext";
