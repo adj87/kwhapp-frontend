@@ -7,7 +7,9 @@ const Wrapper = styled.div`
   justify-content: center;
   flex-direction: column;
   padding: 2rem;
-  height: 100%;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 `;
 
 const CreatedBy = styled.span`
