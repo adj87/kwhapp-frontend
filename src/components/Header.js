@@ -23,7 +23,7 @@ const Wrapper = styled.div`
   padding: 2rem;
   flex-direction: column;
   background-color: ${({ theme }) => theme.palette.grey[1]};
-  border-bottom: ${({ theme }) => `3px solid ${theme.palette.grey[2]}`};
+  border-bottom: ${({ theme }) => `1px solid ${theme.palette.grey[2]}`};
 `;
 const WrapperTitle = styled.div`
   display: flex;
