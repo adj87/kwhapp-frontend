@@ -1,7 +1,8 @@
-import React from "react";
+import React, { useContext } from "react";
 import styled from "styled-components";
 import Input from "../../components/Input";
 import Modal from "../../components/Modal";
+import { MainContext } from "../../contexts/MainContext";
 
 const InputsWrapper = styled.div`
   display: grid;
@@ -9,9 +10,10 @@ const InputsWrapper = styled.div`
   grid-column-gap: 20px;
 `;
 
-export const CreateEditModal = ({ documentToModal, setDocumentToModal }) => {
+export const CreateEditModal = () => {
+  const { documentToModal, setDocumentToModal } = useContext(MainContext);
   return (
-    documentToModal && (
+    documentToModal && ( //only shows if there is a document in the context
       <Modal
         header={documentToModal?.id ? "Edit consumption" : "Create consumption"}
         onCancel={() => setDocumentToModal(null)}

@@ -111,12 +111,8 @@ const Home = () => {
           onDelete={(row) => console.log(row)}
         />
       </Body>
-      {documentToModal && (
-        <CreateEditModal
-          documentToModal={documentToModal}
-          setDocumentToModal={setDocumentToModal}
-        />
-      )}
+      <CreateEditModal />
+      )
       <Footer />
     </>
   );
