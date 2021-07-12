@@ -21,7 +21,7 @@ const CenteredDiv = styled.div`
   animation: backInDown;
   animation-duration: 0.5s;
   background-color: ${({ theme, darkMode }) =>
-    darkMode ? theme.palette.grey[1] : theme.palette.primary[6]};
+    darkMode ? theme.palette.grey[1] : theme.palette.primary[7]};
   width: 20%;
   height: auto;
   border-radius: 20px;
@@ -47,6 +47,7 @@ const Header = styled.h1`
 `;
 
 const ButtonsRow = styled.div`
+  margin-top: 12px;
   display: grid;
   grid-template-columns: auto auto;
   grid-column-gap: 10px;
