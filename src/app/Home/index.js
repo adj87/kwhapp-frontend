@@ -108,6 +108,7 @@ const Home = () => {
           data={data}
           onRowClick={(row) => setRowToEdit(row)}
           onAdd={(row) => setRowToEdit(row)}
+          onDelete={(row) => console.log(row)}
         />
       </Body>
       {rowToEdit && (

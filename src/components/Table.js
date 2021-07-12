@@ -9,6 +9,7 @@ import {
   faAngleDoubleLeft,
   faAngleRight,
   faAngleDoubleRight,
+  faTimesCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { MainContext } from "../contexts/MainContext";
 import Button from "./Button";
@@ -46,6 +47,11 @@ const Styles = styled.div`
         transition: all 0.4s;
         &:hover {
           transform: translateX(4px);
+        }
+        td {
+          :last-child {
+            border-bottom: none;
+          }
         }
       }
     }
@@ -101,7 +107,7 @@ const ButtonWrapper = styled.div`
   margin-top: 20px;
 `;
 
-function Table({ columns, data, onRowClick, onAdd }) {
+function Table({ columns, data, onRowClick, onAdd, onDelete }) {
   const { darkMode } = useContext(MainContext);
   const {
     getTableProps,
@@ -147,15 +153,9 @@ function Table({ columns, data, onRowClick, onAdd }) {
                   const icon = column.isSorted ? (
                     // @ts-ignore
                     column.isSortedDesc ? (
-                      <FontAwesomeIcon
-                        icon={faAngleDown}
-                        className="text-secondary-main text-md"
-                      />
+                      <FontAwesomeIcon icon={faAngleDown} />
                     ) : (
-                      <FontAwesomeIcon
-                        icon={faAngleUp}
-                        className="text-secondary-main text-md"
-                      />
+                      <FontAwesomeIcon icon={faAngleUp} />
                     )
                   ) : (
                     ""
@@ -184,6 +184,15 @@ function Table({ columns, data, onRowClick, onAdd }) {
                     <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
                   );
                 })}
+                <td
+                  onClick={(e) => {
+                    console.log("hiiii");
+                    e.stopPropagation();
+                    onDelete(row);
+                  }}
+                >
+                  <FontAwesomeIcon size={"1x"} icon={faTimesCircle} />
+                </td>
               </tr>
             );
           })}
@@ -230,7 +239,13 @@ function Table({ columns, data, onRowClick, onAdd }) {
   );
 }
 
-export default withTheme(function ({ data, columns, onAdd, onRowClick }) {
+export default withTheme(function ({
+  data,
+  columns,
+  onAdd,
+  onRowClick,
+  onDelete,
+}) {
   const { darkMode } = useContext(MainContext);
   return (
     <Styles darkMode={darkMode}>
@@ -239,6 +254,7 @@ export default withTheme(function ({ data, columns, onAdd, onRowClick }) {
         data={data}
         onAdd={onAdd}
         onRowClick={onRowClick}
+        onDelete={onDelete}
       />
     </Styles>
   );
