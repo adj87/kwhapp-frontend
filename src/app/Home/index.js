@@ -5,6 +5,7 @@ import Header from "../../components/Header";
 import Modal from "../../components/Modal";
 import Table from "../../components/Table";
 import { MainContext } from "../../contexts/MainContext";
+import { CreateEditModal } from "./CreateEditModal";
 
 const columns = [
   {
@@ -110,13 +111,7 @@ const Home = () => {
         />
       </Body>
       {rowToEdit && (
-        <Modal
-          header={rowToEdit.id ? "Edit consumption" : "Create consumption"}
-          onCancel={() => setRowToEdit(null)}
-          onAccept={() => console.log("aceptado")}
-        >
-          {"Toma ya"}
-        </Modal>
+        <CreateEditModal rowToEdit={rowToEdit} setRowToEdit={setRowToEdit} />
       )}
       <Footer />
     </>
