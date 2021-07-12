@@ -1,7 +1,9 @@
-import React, { useEffect, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import reactDom from "react-dom";
 import styled, { withTheme } from "styled-components";
 import { device } from "../constants";
+import { MainContext } from "../contexts/MainContext";
+import Button from "./Button";
 
 const Background = styled.div`
   background: rgba(0, 0, 0, 0.22);
@@ -18,7 +20,8 @@ const Background = styled.div`
 const CenteredDiv = styled.div`
   animation: backInDown;
   animation-duration: 0.5s;
-  background-color: white;
+  background-color: ${({ theme, darkMode }) =>
+    darkMode ? theme.palette.grey[1] : theme.palette.primary[6]};
   width: 20%;
   height: auto;
   border-radius: 20px;
@@ -35,21 +38,27 @@ const CenteredDiv = styled.div`
 
 const Header = styled.h1`
   text-align: center;
-  color: ${({ theme }) => theme.palette.primary.main};
+  color: ${({ theme, darkMode }) =>
+    darkMode ? theme.palette.grey[2] : theme.palette.primary.main};
   margin: 0px 0px 20px 0px;
-  text-transform: uppercase;
-  font-family: RedHat Bold;
+  font-family: Poppins Bold;
+  color: ${({ theme, darkMode }) =>
+    darkMode ? theme.palette.grey[2] : theme.palette.grey[1]};
 `;
 
-const Modal = ({ children, header, size = "md", onClick }) => {
+const ButtonsRow = styled.div`
+  display: grid;
+  grid-template-columns: auto auto;
+  grid-column-gap: 10px;
+`;
+
+const Modal = ({ children, header, size = "md", onCancel, onAccept }) => {
+  const { darkMode } = useContext(MainContext);
   const [modal, setModal] = useState(null);
   useEffect(() => {
     // create element div wich will be placed out of the root element in html. Add classname and onclick event
     const modal = document.createElement("div");
     modal.className = "portal-modal";
-    modal.onclick = (e) =>
-      e.target.className.includes("portal-modal") && onClick();
-
     // append to body and set it
     document.body.appendChild(modal);
     setModal(modal);
@@ -62,9 +71,15 @@ const Modal = ({ children, header, size = "md", onClick }) => {
     modal &&
     reactDom.createPortal(
       <Background>
-        <CenteredDiv size={size}>
-          <Header>{header}</Header>
+        <CenteredDiv size={size} darkMode={darkMode}>
+          <Header darkMode={darkMode}>{header}</Header>
           {children}
+          <ButtonsRow>
+            <Button onClick={onCancel} inverse>
+              Cancel
+            </Button>
+            <Button onClick={onAccept}>Save Changes</Button>
+          </ButtonsRow>
         </CenteredDiv>
       </Background>,
       modal

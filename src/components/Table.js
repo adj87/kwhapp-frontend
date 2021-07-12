@@ -178,7 +178,7 @@ function Table({ columns, data, onRowClick, onAdd }) {
           {page.map((row, i) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()}>
+              <tr {...row.getRowProps()} onClick={() => onRowClick(row)}>
                 {row.cells.map((cell) => {
                   return (
                     <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
@@ -230,11 +230,16 @@ function Table({ columns, data, onRowClick, onAdd }) {
   );
 }
 
-export default withTheme(function ({ data, columns, onAdd }) {
+export default withTheme(function ({ data, columns, onAdd, onRowClick }) {
   const { darkMode } = useContext(MainContext);
   return (
     <Styles darkMode={darkMode}>
-      <Table columns={columns} data={data} onAdd={onAdd} />
+      <Table
+        columns={columns}
+        data={data}
+        onAdd={onAdd}
+        onRowClick={onRowClick}
+      />
     </Styles>
   );
 });

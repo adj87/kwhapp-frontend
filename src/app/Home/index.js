@@ -1,9 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import Body from "../../components/Body";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Modal from "../../components/Modal";
 import Table from "../../components/Table";
+import { MainContext } from "../../contexts/MainContext";
 
 const columns = [
   {
@@ -96,6 +97,7 @@ const data = [
 ];
 
 const Home = () => {
+  const { rowToEdit, setRowToEdit } = useContext(MainContext);
   return (
     <>
       <Header />
@@ -103,10 +105,19 @@ const Home = () => {
         <Table
           columns={columns}
           data={data}
-          onAdd={() => alert("hi, my friend")}
+          onRowClick={(row) => setRowToEdit(row)}
+          onAdd={(row) => setRowToEdit(row)}
         />
-        {/*  <Modal>Holaaaaa</Modal> */}
       </Body>
+      {rowToEdit && (
+        <Modal
+          header={rowToEdit.id ? "Edit consumption" : "Create consumption"}
+          onCancel={() => setRowToEdit(null)}
+          onAccept={() => console.log("aceptado")}
+        >
+          {"Toma ya"}
+        </Modal>
+      )}
       <Footer />
     </>
   );

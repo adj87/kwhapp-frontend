@@ -9,30 +9,15 @@ export default styled.button`
   border: none;
   font-family: Poppins Black;
   color: ${({ theme, color, inverse }) => {
-    switch (color) {
-      case "primary":
-        return inverse ? theme.palette.bodyColor : theme.palette.bodyColor;
-      /* 
-      case "secondary":
-        return inverse ? theme.palette.secondary.dark : "white"; */
-
-      default:
-        return inverse ? theme.palette.bodyColor : theme.palette.bodyColor;
-    }
+    return inverse ? theme.palette.primary[6] : theme.palette.bodyColor;
   }};
   padding: 5px 0px;
   cursor: pointer;
   transition: 0.5s;
   background-color: ${({ theme, color, inverse }) => {
     switch (color) {
-      case "primary":
-        return inverse ? theme.palette.primary[5] : theme.palette.primary[5];
-      /* 
-      case "secondary":
-        return inverse ? theme.palette.secondary.dark : "white"; */
-
       default:
-        return inverse ? theme.palette.primary[5] : theme.palette.primary[5];
+        return inverse ? theme.palette.bodyColor : theme.palette.primary[5];
     }
   }};
   &:hover {
@@ -49,7 +34,7 @@ export default styled.button`
         default:
           return inverse
             ? theme.palette.primary.contrastText
-            : theme.palette.primary[6];
+            : theme.palette.primary[7];
       }
     }};
   }
