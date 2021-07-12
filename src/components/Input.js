@@ -10,7 +10,7 @@ const Label = styled.label`
 `;
 
 const InputText = styled.input`
-  color: ${({ theme }) => theme.palette.primary[6]};
+  color: ${({ theme }) => theme.palette.primary[2]};
   border-radius: 5px;
   // background-color: ${({ theme }) => theme.palette.grey[100]};
   //  border: 0.6px solid ${({ theme }) => theme.palette.grey[400]};
@@ -19,6 +19,7 @@ const InputText = styled.input`
   font-size: 14px;
   width: 100%;
   border: none;
+  box-sizing: border-box;
   &:focus {
     outline-color: ${({ theme }) => theme.palette.primary[3]};
   }

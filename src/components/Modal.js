@@ -47,7 +47,7 @@ const Header = styled.h1`
 `;
 
 const ButtonsRow = styled.div`
-  margin-top: 12px;
+  margin-top: 40px;
   display: grid;
   grid-template-columns: auto auto;
   grid-column-gap: 10px;

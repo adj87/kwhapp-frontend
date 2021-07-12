@@ -6,7 +6,7 @@ import Modal from "../../components/Modal";
 const InputsWrapper = styled.div`
   display: grid;
   grid-template-columns: auto auto;
-  grid-column-gap: 2px;
+  grid-column-gap: 20px;
 `;
 
 export const CreateEditModal = ({ rowToEdit, setRowToEdit }) => {
