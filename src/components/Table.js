@@ -116,7 +116,7 @@ function Table({ columns, data, onRowClick, onAdd }) {
     nextPage,
     pageCount,
     pageOptions,
-    state: { pageIndex, pageSize },
+    state: { pageIndex },
   } = useTable(
     {
       columns,
