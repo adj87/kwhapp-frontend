@@ -6,7 +6,7 @@ export function MainContextProvider({ children }) {
   const [data, setData] = useState([]);
   const [loading, setLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
-  const [rowToEdit, setRowToEdit] = useState(null);
+  const [documentToModal, setDocumentToModal] = useState(null);
 
   return (
     <MainContext.Provider
@@ -17,8 +17,8 @@ export function MainContextProvider({ children }) {
         setLoading,
         darkMode,
         setDarkMode,
-        rowToEdit,
-        setRowToEdit,
+        documentToModal,
+        setDocumentToModal,
       }}
     >
       {children}

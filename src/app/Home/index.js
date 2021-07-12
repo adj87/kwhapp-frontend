@@ -98,7 +98,7 @@ const data = [
 ];
 
 const Home = () => {
-  const { rowToEdit, setRowToEdit } = useContext(MainContext);
+  const { documentToModal, setDocumentToModal } = useContext(MainContext);
   return (
     <>
       <Header />
@@ -106,13 +106,16 @@ const Home = () => {
         <Table
           columns={columns}
           data={data}
-          onRowClick={(row) => setRowToEdit(row)}
-          onAdd={(row) => setRowToEdit(row)}
+          onRowClick={(row) => setDocumentToModal(row)}
+          onAdd={(row) => setDocumentToModal(row)}
           onDelete={(row) => console.log(row)}
         />
       </Body>
-      {rowToEdit && (
-        <CreateEditModal rowToEdit={rowToEdit} setRowToEdit={setRowToEdit} />
+      {documentToModal && (
+        <CreateEditModal
+          documentToModal={documentToModal}
+          setDocumentToModal={setDocumentToModal}
+        />
       )}
       <Footer />
     </>

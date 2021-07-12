@@ -9,35 +9,37 @@ const InputsWrapper = styled.div`
   grid-column-gap: 20px;
 `;
 
-export const CreateEditModal = ({ rowToEdit, setRowToEdit }) => {
+export const CreateEditModal = ({ documentToModal, setDocumentToModal }) => {
   return (
-    <Modal
-      header={rowToEdit?.id ? "Edit consumption" : "Create consumption"}
-      onCancel={() => setRowToEdit(null)}
-      onAccept={() => console.log("aceptado")}
-    >
-      <InputsWrapper>
-        <Input
-          label={"hola"}
-          name="input1"
-          onChange={(name, value) => console.log(name, value)}
-        />
-        <Input
-          label={"hola"}
-          name="input2"
-          onChange={(name, value) => console.log(name, value)}
-        />
-        <Input
-          label={"hola"}
-          name="input3"
-          onChange={(name, value) => console.log(name, value)}
-        />
-        <Input
-          label={"hola"}
-          name="input4"
-          onChange={(name, value) => console.log(name, value)}
-        />
-      </InputsWrapper>
-    </Modal>
+    documentToModal && (
+      <Modal
+        header={documentToModal?.id ? "Edit consumption" : "Create consumption"}
+        onCancel={() => setDocumentToModal(null)}
+        onAccept={() => console.log("aceptado")}
+      >
+        <InputsWrapper>
+          <Input
+            label={"hola"}
+            name="input1"
+            onChange={(name, value) => console.log(name, value)}
+          />
+          <Input
+            label={"hola"}
+            name="input2"
+            onChange={(name, value) => console.log(name, value)}
+          />
+          <Input
+            label={"hola"}
+            name="input3"
+            onChange={(name, value) => console.log(name, value)}
+          />
+          <Input
+            label={"hola"}
+            name="input4"
+            onChange={(name, value) => console.log(name, value)}
+          />
+        </InputsWrapper>
+      </Modal>
+    )
   );
 };
