@@ -11,6 +11,7 @@ export default styled.button`
   color: ${({ theme, color, inverse }) => {
     return inverse ? theme.palette.primary[6] : theme.palette.bodyColor;
   }};
+  border: ${({ theme, inverse }) => (inverse ? `1px solid ${theme.palette.primary[5]}` : "none")};
   padding: 5px 0px;
   cursor: pointer;
   transition: 0.5s;
@@ -24,17 +25,13 @@ export default styled.button`
     background-color: ${({ theme, color, inverse }) => {
       switch (color) {
         case "primary":
-          return inverse
-            ? theme.palette.primary.contrastText
-            : theme.palette.primary[3];
+          return inverse ? theme.palette.primary.contrastText : theme.palette.primary[3];
 
         case "secondary":
           return theme.palette.secondary.main;
 
         default:
-          return inverse
-            ? theme.palette.primary.contrastText
-            : theme.palette.primary[7];
+          return inverse ? theme.palette.primary.contrastText : theme.palette.primary[7];
       }
     }};
   }
