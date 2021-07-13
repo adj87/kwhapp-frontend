@@ -6,7 +6,7 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   flex-direction: column;
-  padding: 2rem;
+  padding-bottom: 2rem;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -16,8 +16,7 @@ const CreatedBy = styled.span`
   font-family: Poppins ExtraBold;
   font-size: 20px;
   text-align: center;
-  color: ${({ theme, darkMode }) =>
-    darkMode ? "white" : theme.palette.grey[1]};
+  color: ${({ theme, darkMode }) => (darkMode ? "white" : theme.palette.grey[1])};
 `;
 
 const AllRightsReserved = styled.span`
