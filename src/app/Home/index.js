@@ -13,9 +13,9 @@ const columns = [
     columns: [
       { Header: "Date", accessor: "date" },
       { Header: "Time", accessor: "time" },
-      { Header: "Consumption", accessor: "consumption" },
-      { Header: "Price", accessor: "price" },
-      { Header: "Cost per hour", accessor: "cost_per_hour" },
+      { Header: "Consumption (Wh)", accessor: "consumption" },
+      { Header: "Price (€/kWh)", accessor: "price" },
+      { Header: "Cost per hour (€)", accessor: "cost_per_hour" },
     ],
   },
 ];

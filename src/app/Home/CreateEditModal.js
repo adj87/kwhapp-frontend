@@ -27,18 +27,29 @@ export const CreateEditModal = () => {
       <Modal
         header={documentToModal?._id ? "Edit consumption" : "Create consumption"}
         onCancel={() => setDocumentToModal(null)}
-        onAccept={() => console.log("aceptado")}
+        onAccept={submitForm}
       >
         <InputsWrapper>
           <Input label={"Date"} name="date" value={values?.date} onChange={setFieldValue} />
           <Input label={"Time"} name="time" value={values?.time} onChange={setFieldValue} />
           <Input
-            label={"Consumption"}
+            label={"Consumption (Wh)"}
             name="consumption"
             value={values?.consumption}
             onChange={setFieldValue}
           />
-          <Input label={"Price"} name="price" value={values?.price} onChange={setFieldValue} />
+          <Input
+            label={"Price (€/kWh)"}
+            name="price"
+            value={values?.price}
+            onChange={setFieldValue}
+          />
+          <Input
+            label={"Cost per hour (€)"}
+            name="cost_per_hour"
+            value={values?.cost_per_hour}
+            onChange={setFieldValue}
+          />
         </InputsWrapper>
       </Modal>
     )
