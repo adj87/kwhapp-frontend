@@ -4,22 +4,9 @@ import Body from "../../components/Body";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Table from "../../components/Table";
-import { defaultValues } from "../../constants";
+import { defaultValues, tableColumns } from "../../constants";
 import { MainContext } from "../../contexts/MainContext";
 import { CreateEditModal } from "./CreateEditModal";
-
-const columns = [
-  {
-    Header: "Name",
-    columns: [
-      { Header: "Date", accessor: "date" },
-      { Header: "Time", accessor: "time" },
-      { Header: "Consumption (Wh)", accessor: "consumption" },
-      { Header: "Price (€/kWh)", accessor: "price" },
-      { Header: "Cost per hour (€)", accessor: "cost_per_hour" },
-    ],
-  },
-];
 
 const Home = () => {
   const { data, setDocumentToModal, setData } = useContext(MainContext);
@@ -45,7 +32,7 @@ const Home = () => {
       <Header />
       <Body>
         <Table
-          columns={columns}
+          columns={tableColumns}
           data={data}
           onRowClick={(row) => setDocumentToModal(row)}
           onAdd={() => setDocumentToModal(defaultValues)}

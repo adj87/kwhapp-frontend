@@ -43,3 +43,16 @@ export const defaultValues = {
   price: null,
   time: null,
 };
+
+export const tableColumns = [
+  {
+    Header: "Name",
+    columns: [
+      { Header: "Date", accessor: "date" },
+      { Header: "Time", accessor: "time" },
+      { Header: "Consumption (Wh)", accessor: "consumption" },
+      { Header: "Price (€/kWh)", accessor: "price" },
+      { Header: "Cost per hour (€)", accessor: "cost_per_hour" },
+    ],
+  },
+];
