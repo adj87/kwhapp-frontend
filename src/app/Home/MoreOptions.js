@@ -5,9 +5,14 @@ import api from "../../api";
 import { MainContext } from "../../contexts/MainContext";
 
 const Wrapper = styled.div`
+  width: 1000px;
+  margin: auto;
+  margin-top: 50px;
   display: grid;
+  grid-template-columns: 150px 150px;
+  justify-content: center;
+  grid-gap: 20px;
 `;
-
 const MoreOptions = () => {
   const { setData } = useContext(MainContext);
   const handleFile = ({ base64, format, name }) => {
@@ -26,9 +31,12 @@ const MoreOptions = () => {
   };
 
   return (
-    <Wrapper>
-      <ImportCsv text={"Import CSV"} inverseButtonStyle handleFile={handleFile} />
-    </Wrapper>
+    <>
+      <Wrapper>
+        <ImportCsv text={"Import CSV"} inverseButtonStyle handleFile={handleFile} />
+        <ImportCsv text={"Import CSV"} inverseButtonStyle handleFile={handleFile} />
+      </Wrapper>
+    </>
   );
 };
 
