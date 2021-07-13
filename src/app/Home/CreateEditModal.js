@@ -30,7 +30,13 @@ export const CreateEditModal = () => {
         onAccept={submitForm}
       >
         <InputsWrapper>
-          <Input label={"Date"} name="date" value={values?.date} onChange={setFieldValue} />
+          <Input
+            label={"Date"}
+            name="date"
+            value={values?.date}
+            onChange={setFieldValue}
+            placeholder={"YYYY-MM-DD"}
+          />
           <Input label={"Time"} name="time" value={values?.time} onChange={setFieldValue} />
           <Input
             label={"Consumption (Wh)"}

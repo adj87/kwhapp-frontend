@@ -23,6 +23,9 @@ const InputText = styled.input`
   &:focus {
     outline-color: ${({ theme }) => theme.palette.primary[3]};
   }
+  &::placeholder {
+    color: ${({ theme }) => theme.palette.grey[2]};
+  }
 `;
 
 const InputWrapper = styled.div`
@@ -35,7 +38,7 @@ const Error = styled.span`
   color: ${({ theme }) => theme.palette.error};
 `;
 
-const Input = ({ error, name, label, onChange, value }) => {
+const Input = ({ error, name, label, onChange, value, placeholder }) => {
   return (
     <InputWrapper>
       <Label>{label}</Label>
@@ -44,6 +47,7 @@ const Input = ({ error, name, label, onChange, value }) => {
         type={"text"}
         onChange={(e) => onChange(e.target.name, e.target.value)}
         value={value}
+        placeholder={placeholder}
       />
     </InputWrapper>
   );
