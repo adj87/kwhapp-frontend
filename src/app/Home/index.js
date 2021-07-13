@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import api from "../../api";
 import Body from "../../components/Body";
 import Footer from "../../components/Footer";
@@ -13,92 +13,19 @@ const columns = [
     columns: [
       { Header: "Date", accessor: "date" },
       { Header: "Time", accessor: "time" },
+      { Header: "Consumption", accessor: "consumption" },
+      { Header: "Price", accessor: "price" },
+      { Header: "Cost per hour", accessor: "cost_per_hour" },
     ],
   },
 ];
 
-const data = [
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-  {
-    date: "19/08/1987",
-    time: "05:05",
-  },
-];
-
 const Home = () => {
-  const { documentToModal, setDocumentToModal } = useContext(MainContext);
+  const { data, setDocumentToModal, setData } = useContext(MainContext);
+
+  useEffect(() => {
+    api.getConsumptions().then(({ data }) => setData(data));
+  }, []);
   const onChange = (e) => {
     var reader = new FileReader();
     const file = e.target.files[0];
@@ -125,7 +52,6 @@ const Home = () => {
         />
       </Body>
       <CreateEditModal />
-      )
       <input type="file" id="myFile" name="filename" onChange={onChange} />
       <Footer />
     </>
