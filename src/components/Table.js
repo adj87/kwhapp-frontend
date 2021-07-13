@@ -171,7 +171,7 @@ function Table({ columns, data, onRowClick, onAdd, onDelete }) {
           {page.map((row, i) => {
             prepareRow(row);
             return (
-              <tr {...row.getRowProps()} onClick={() => onRowClick(row)}>
+              <tr {...row.getRowProps()} onClick={() => onRowClick(row.original)}>
                 {row.cells.map((cell) => {
                   return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                 })}
