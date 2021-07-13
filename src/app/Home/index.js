@@ -48,7 +48,11 @@ const Home = () => {
           data={data}
           onRowClick={(row) => setDocumentToModal(row)}
           onAdd={(row) => setDocumentToModal(row)}
-          onDelete={(row) => console.log(row)}
+          onDelete={({ _id }) =>
+            api
+              .deleteConsumption(_id)
+              .then(() => api.getConsumptions().then(({ data }) => setData(data)))
+          }
         />
       </Body>
       <CreateEditModal />
