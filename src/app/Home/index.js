@@ -7,6 +7,7 @@ import Table from "../../components/Table";
 import { defaultValues, tableColumns } from "../../constants";
 import { MainContext } from "../../contexts/MainContext";
 import { CreateEditModal } from "./CreateEditModal";
+import MoreOptions from "./MoreOptions";
 
 const Home = () => {
   const { data, setDocumentToModal, setData } = useContext(MainContext);
@@ -14,19 +15,7 @@ const Home = () => {
   useEffect(() => {
     api.getConsumptions().then(({ data }) => setData(data));
   }, []);
-  const onChange = (e) => {
-    var reader = new FileReader();
-    const file = e.target.files[0];
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      const base64 = reader.result.split("base64,")[1];
-      const format = file.name.split(".")[1];
-      api.importData({ base64, format });
-    };
-    reader.onerror = (error) => {
-      console.log("Error: ", error);
-    };
-  };
+
   return (
     <>
       <Header />
@@ -44,7 +33,8 @@ const Home = () => {
         />
       </Body>
       <CreateEditModal />
-      <input type="file" id="myFile" name="filename" onChange={onChange} />
+      <MoreOptions />
+
       <Footer />
     </>
   );

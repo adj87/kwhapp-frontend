@@ -69,12 +69,7 @@ const Header = () => {
         <SubTitle2>and save the planet 🌍 </SubTitle2>
       </WrapperSubTitle>
       <DarkModeSwitchWrapper>
-        <FontAwesomeIcon
-          icon={faMoon}
-          color="white"
-          size="1x"
-          style={{ marginRight: "8px" }}
-        />
+        <FontAwesomeIcon icon={faMoon} color="white" size="1x" style={{ marginRight: "8px" }} />
         <DarkModeSwitch onClick={setDarkMode} on={darkMode} />
       </DarkModeSwitchWrapper>
     </Wrapper>
