@@ -24,9 +24,7 @@ const Styles = styled.div`
       th {
         color: ${({ theme }) => theme.palette.grey[1]};
         border-bottom: ${({ theme, darkMode }) =>
-          `3px solid ${
-            darkMode ? theme.palette.grey[2] : theme.palette.grey[1]
-          }`};
+          `3px solid ${darkMode ? theme.palette.grey[2] : theme.palette.grey[1]}`};
         padding: 10px 50px;
         font-family: Poppins ExtraBold;
         color: ${({ theme, darkMode }) =>
@@ -58,15 +56,12 @@ const Styles = styled.div`
 
     th,
     td {
-      color: ${({ darkMode, theme }) =>
-        darkMode ? theme.palette.grey[2] : theme.palette.grey[1]};
+      color: ${({ darkMode, theme }) => (darkMode ? theme.palette.grey[2] : theme.palette.grey[1])};
       margin: 0;
       padding: 0.5rem;
       text-align: center;
       border-bottom: ${({ theme, darkMode }) =>
-        `1px solid ${
-          darkMode ? theme.palette.grey[2] : theme.palette.grey[1]
-        }`};
+        `1px solid ${darkMode ? theme.palette.grey[2] : theme.palette.grey[1]}`};
       :last-child {
         border-right: 0;
       }
@@ -80,16 +75,14 @@ const NavigationButton = styled.button`
   cursor: pointer;
   background-color: ${({ theme, darkMode }) =>
     darkMode ? theme.palette.grey[2] : theme.palette.grey[1]};
-  color: ${({ theme, darkMode }) =>
-    !darkMode ? theme.palette.grey[2] : theme.palette.grey[1]};
+  color: ${({ theme, darkMode }) => (!darkMode ? theme.palette.grey[2] : theme.palette.grey[1])};
   border: none;
   border-radius: 5px;
 `;
 
 const NavigationResume = styled.span`
   font-family: Poppins Black;
-  color: ${({ theme, darkMode }) =>
-    !darkMode ? theme.palette.grey[2] : theme.palette.grey[1]};
+  color: ${({ theme, darkMode }) => (!darkMode ? theme.palette.grey[2] : theme.palette.grey[1])};
 `;
 
 const Tfoot = styled.tfoot`
@@ -133,7 +126,7 @@ function Table({ columns, data, onRowClick, onAdd, onDelete }) {
       },
     },
     useSortBy,
-    usePagination
+    usePagination,
   );
 
   return (
@@ -180,15 +173,12 @@ function Table({ columns, data, onRowClick, onAdd, onDelete }) {
             return (
               <tr {...row.getRowProps()} onClick={() => onRowClick(row)}>
                 {row.cells.map((cell) => {
-                  return (
-                    <td {...cell.getCellProps()}>{cell.render("Cell")}</td>
-                  );
+                  return <td {...cell.getCellProps()}>{cell.render("Cell")}</td>;
                 })}
                 <td
                   onClick={(e) => {
-                    console.log("hiiii");
                     e.stopPropagation();
-                    onDelete(row);
+                    onDelete(row.original);
                   }}
                 >
                   <FontAwesomeIcon size={"1x"} icon={faTimesCircle} />
@@ -216,11 +206,7 @@ function Table({ columns, data, onRowClick, onAdd, onDelete }) {
         <NavigationResume>
           {pageIndex + 1} of {pageOptions.length}
         </NavigationResume>
-        <NavigationButton
-          darkMode={darkMode}
-          onClick={() => nextPage()}
-          disabled={!canNextPage}
-        >
+        <NavigationButton darkMode={darkMode} onClick={() => nextPage()} disabled={!canNextPage}>
           <FontAwesomeIcon icon={faAngleRight} />
         </NavigationButton>
         <NavigationButton
@@ -239,13 +225,7 @@ function Table({ columns, data, onRowClick, onAdd, onDelete }) {
   );
 }
 
-export default withTheme(function ({
-  data,
-  columns,
-  onAdd,
-  onRowClick,
-  onDelete,
-}) {
+export default withTheme(function ({ data, columns, onAdd, onRowClick, onDelete }) {
   const { darkMode } = useContext(MainContext);
   return (
     <Styles darkMode={darkMode}>
