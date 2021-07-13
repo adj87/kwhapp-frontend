@@ -91,7 +91,7 @@ const Tfoot = styled.tfoot`
   margin: auto;
   align-content: center;
   justify-content: space-around;
-  margin-top: 10px;
+  margin-top: 30px;
 `;
 
 const ButtonWrapper = styled.div`
