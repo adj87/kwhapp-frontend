@@ -1,9 +1,10 @@
 import { useFormik } from "formik";
 import React, { useContext } from "react";
-import styled from "styled-components";
+import styled, { useTheme } from "styled-components";
 import api from "../../api";
 import Input from "../../components/Input";
 import Modal from "../../components/Modal";
+import { validationConsumptionSchema } from "../../constants";
 import { MainContext } from "../../contexts/MainContext";
 
 const InputsWrapper = styled.div`
@@ -12,11 +13,18 @@ const InputsWrapper = styled.div`
   grid-column-gap: 20px;
 `;
 
+const ErrorMessage = styled.p`
+  color: ${({ theme }) => theme.palette.error};
+  font-family: Poppins Bold;
+`;
+
 export const CreateEditModal = () => {
+  const theme = useTheme();
   const { documentToModal, setDocumentToModal, setData } = useContext(MainContext);
-  const { values, setFieldValue, errors, submitForm } = useFormik({
+  const { values, setFieldValue, errors, submitForm, submitCount } = useFormik({
     initialValues: documentToModal,
     enableReinitialize: true,
+    validationSchema: validationConsumptionSchema,
     onSubmit: (values) => {
       const finalRequest = values._id ? api.editConsumption : api.createConsumption;
       return finalRequest(values)
@@ -33,6 +41,7 @@ export const CreateEditModal = () => {
         });
     },
   });
+
   return (
     documentToModal && ( //only shows if there is a document in the context
       <Modal
@@ -68,6 +77,10 @@ export const CreateEditModal = () => {
             onChange={setFieldValue}
           />
         </InputsWrapper>
+        {submitCount > 0 &&
+          Object.keys(errors).map((err) => {
+            return <ErrorMessage theme={theme}>{errors[err]}</ErrorMessage>;
+          })}
       </Modal>
     )
   );

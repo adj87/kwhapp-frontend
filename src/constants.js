@@ -1,3 +1,5 @@
+import * as yup from "yup";
+
 export const API_URL = "http://localhost:3001";
 
 export const theme = {
@@ -56,3 +58,15 @@ export const tableColumns = [
     ],
   },
 ];
+
+export const validationConsumptionSchema = yup.object().shape({
+  date: yup
+    .string()
+    .nullable()
+    .required()
+    .matches(/^\d{4}-\d{2}-\d{2}$/, "date must be YYYY-MM-DD format"),
+  time: yup.number().typeError("time must be a number").nullable().max(23).min(0).required(),
+  consumption: yup.number().typeError("time must be a number").nullable().required(),
+  price: yup.number().typeError("time must be a number").nullable().required(),
+  cost_per_hour: yup.number().typeError("time must be a number").nullable().required(),
+});
