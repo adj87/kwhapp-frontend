@@ -35,7 +35,7 @@ const Error = styled.span`
   color: ${({ theme }) => theme.palette.error};
 `;
 
-const Input = ({ error, name, label, onChange }) => {
+const Input = ({ error, name, label, onChange, value }) => {
   return (
     <InputWrapper>
       <Label>{label}</Label>
@@ -43,6 +43,7 @@ const Input = ({ error, name, label, onChange }) => {
         name={name}
         type={"text"}
         onChange={(e) => onChange(e.target.name, e.target.value)}
+        value={value}
       />
     </InputWrapper>
   );
