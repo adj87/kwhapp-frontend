@@ -4,6 +4,7 @@ import Body from "../../components/Body";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
 import Table from "../../components/Table";
+import { defaultValues } from "../../constants";
 import { MainContext } from "../../contexts/MainContext";
 import { CreateEditModal } from "./CreateEditModal";
 
@@ -47,7 +48,7 @@ const Home = () => {
           columns={columns}
           data={data}
           onRowClick={(row) => setDocumentToModal(row)}
-          onAdd={(row) => setDocumentToModal(row)}
+          onAdd={() => setDocumentToModal(defaultValues)}
           onDelete={({ _id }) =>
             api
               .deleteConsumption(_id)

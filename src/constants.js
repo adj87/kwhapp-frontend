@@ -35,3 +35,11 @@ export const device = {
   deviceMd: `(min-width: ${theme.breakpoints.md}px)`,
   deviceLg: `(min-width: ${theme.breakpoints.lg}px)`,
 };
+
+export const defaultValues = {
+  consumption: null,
+  cost_per_hour: null,
+  date: null,
+  price: null,
+  time: null,
+};
