@@ -13,13 +13,24 @@ const InputsWrapper = styled.div`
 `;
 
 export const CreateEditModal = () => {
-  const { documentToModal, setDocumentToModal } = useContext(MainContext);
+  const { documentToModal, setDocumentToModal, setData } = useContext(MainContext);
   const { values, setFieldValue, errors, submitForm } = useFormik({
     initialValues: documentToModal,
     enableReinitialize: true,
     onSubmit: (values) => {
-      if (values._id) return api.editConsumption(values);
-      return api.createConsumption(values);
+      const finalRequest = values._id ? api.editConsumption : api.createConsumption;
+      return finalRequest(values)
+        .then(() => {
+          api.getConsumptions().then(({ data }) => {
+            setData(data);
+            setDocumentToModal(null);
+          });
+        })
+        .catch(({ message }) => {
+          alert(
+            "Something went wrong!! There is only one row per date and time. \nMake sure you are not attempting to insert a duplicated value",
+          );
+        });
     },
   });
   return (
