@@ -27,8 +27,8 @@ export default function App() {
     (showChartModal && data.length) > 0 && (
       <Modal
         header="Charts"
-        onCancel={() => setShowChartModal(false)}
         onAccept={() => setShowChartModal(false)}
+        onAcceptText={"Ok"}
         size="lg"
       >
         <SelectorWrapper>

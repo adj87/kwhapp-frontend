@@ -52,11 +52,11 @@ const Header = styled.h1`
 const ButtonsRow = styled.div`
   margin-top: 40px;
   display: grid;
-  grid-template-columns: auto auto;
+  grid-template-columns: ${({ onlyOneColumn }) => (onlyOneColumn ? "auto" : "auto auto")};
   grid-column-gap: 10px;
 `;
 
-const Modal = ({ children, header, size = "md", onCancel, onAccept }) => {
+const Modal = ({ children, header, size = "md", onCancel, onAccept, onAcceptText }) => {
   const { darkMode } = useContext(MainContext);
   const [modal, setModal] = useState(null);
   useEffect(() => {
@@ -75,14 +75,16 @@ const Modal = ({ children, header, size = "md", onCancel, onAccept }) => {
     modal &&
     reactDom.createPortal(
       <Background>
-        <CenteredDiv size={size} darkMode={darkMode} size={size ?? "md"}>
+        <CenteredDiv darkMode={darkMode} size={size ?? "md"}>
           <Header darkMode={darkMode}>{header}</Header>
           {children}
-          <ButtonsRow>
-            <Button onClick={onCancel} inverse>
-              Cancel
-            </Button>
-            <Button onClick={onAccept}>Save Changes</Button>
+          <ButtonsRow onlyOneColumn={!onCancel}>
+            {onCancel && (
+              <Button onClick={onCancel} inverse>
+                Cancel
+              </Button>
+            )}
+            <Button onClick={onAccept}>{`${onAcceptText ?? "Save Changes"}`}</Button>
           </ButtonsRow>
         </CenteredDiv>
       </Background>,
