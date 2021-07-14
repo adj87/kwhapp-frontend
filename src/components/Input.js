@@ -33,11 +33,6 @@ const InputWrapper = styled.div`
   margin: 15px 0px;
 `;
 
-const Error = styled.span`
-  font-size: 12px;
-  color: ${({ theme }) => theme.palette.error};
-`;
-
 const Input = ({ error, name, label, onChange, value, placeholder }) => {
   return (
     <InputWrapper>

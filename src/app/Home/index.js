@@ -14,7 +14,7 @@ const Home = () => {
 
   useEffect(() => {
     api.getConsumptions().then(({ data }) => setData(data));
-  }, []);
+  }, [setData]);
 
   return (
     <>

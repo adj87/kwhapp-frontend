@@ -10,10 +10,12 @@ const deleteConsumption = (id) => axios.delete(`${API_URL}/consumptions/${id}`);
 const editConsumption = (consumption) =>
   axios.put(`${API_URL}/consumptions/${consumption._id}`, consumption);
 
-export default {
+const allMethods = {
   importData,
   getConsumptions,
   deleteConsumption,
   editConsumption,
   createConsumption,
 };
+
+export default allMethods;

@@ -18,7 +18,7 @@ import { Label } from "../../components/Input";
 const SelectorWrapper = styled.div``;
 
 export default function ChartModal() {
-  const { data, setShowChartModal, showChartModal } = useContext(MainContext);
+  const { data, setShowChartModal } = useContext(MainContext);
   const [dataKey, setDataKey] = useState("consumption");
   const distinctDays = [...new Set(data.map((item) => item.date))];
   const [daysSelected, setDaysSelected] = useState([distinctDays[0]]);
@@ -61,7 +61,7 @@ export default function ChartModal() {
         <ScatterChart
           width={500}
           height={400}
-          style={{ backgroundColor: "white", borderRadius: "10px", marginTop: "10px" }}
+          style={{ backgroundColor: "#f3fff2", borderRadius: "10px", marginTop: "10px" }}
         >
           <CartesianGrid />
           <XAxis
