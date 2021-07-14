@@ -36,9 +36,15 @@ export default function App() {
         <SelectorWrapper>
           <CustomLabel>Select one category to show</CustomLabel>
           <select onChange={(e) => setDataKey(e.target.value)}>
-            <option value="consumption">consumption</option>
-            <option value="price">price</option>
-            <option value="cost_per_hour">Cost per hour</option>
+            <option value="consumption" selected={dataKey === "consumption"}>
+              consumption
+            </option>
+            <option value="price" selected={dataKey === "price"}>
+              price
+            </option>
+            <option value="cost_per_hour" selected={dataKey === "cost_per_hour"}>
+              Cost per hour
+            </option>
           </select>
         </SelectorWrapper>
         <SelectorWrapper>
@@ -53,7 +59,9 @@ export default function App() {
             multiple
           >
             {distinctDays.map((el) => (
-              <option value={el}>{el}</option>
+              <option value={el} selected={daysSelected.includes(el)}>
+                {el}
+              </option>
             ))}
           </select>
         </SelectorWrapper>
