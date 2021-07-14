@@ -7,6 +7,7 @@ export function MainContextProvider({ children }) {
   const [loading, setLoading] = useState(false);
   const [darkMode, setDarkMode] = useState(false);
   const [documentToModal, setDocumentToModal] = useState(null);
+  const [showChartModal, setShowChartModal] = useState(false);
 
   return (
     <MainContext.Provider
@@ -19,6 +20,8 @@ export function MainContextProvider({ children }) {
         setDarkMode,
         documentToModal,
         setDocumentToModal,
+        showChartModal,
+        setShowChartModal,
       }}
     >
       {children}

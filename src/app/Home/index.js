@@ -33,6 +33,7 @@ const Home = () => {
         />
       </Body>
       <CreateEditModal />
+
       <MoreOptions />
 
       <Footer />

@@ -3,6 +3,8 @@ import styled from "styled-components";
 import ImportCsv from "../../components/InputFile";
 import api from "../../api";
 import { MainContext } from "../../contexts/MainContext";
+import ChartModal from "./ChartModal";
+import Button from "../../components/Button";
 
 const Wrapper = styled.div`
   width: 1000px;
@@ -14,7 +16,7 @@ const Wrapper = styled.div`
   grid-gap: 20px;
 `;
 const MoreOptions = () => {
-  const { setData } = useContext(MainContext);
+  const { setData, setShowChartModal } = useContext(MainContext);
   const handleFile = ({ base64, format, name }) => {
     if (format === "csv") {
       return api
@@ -34,7 +36,10 @@ const MoreOptions = () => {
     <>
       <Wrapper>
         <ImportCsv text={"Import CSV"} inverseButtonStyle handleFile={handleFile} />
-        <ImportCsv text={"Import CSV"} inverseButtonStyle handleFile={handleFile} />
+        <Button onClick={() => setShowChartModal(true)} inverse>
+          Show charts
+        </Button>
+        <ChartModal />
       </Wrapper>
     </>
   );
