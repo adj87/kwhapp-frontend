@@ -16,6 +16,7 @@ export default function App() {
         header="Charts"
         onCancel={() => setShowChartModal(false)}
         onAccept={() => setShowChartModal(false)}
+        size="lg"
       >
         <select onChange={(e) => setDataKey(e.target.value)}>
           <option value="consumption">consumption</option>
@@ -39,12 +40,12 @@ export default function App() {
           <CartesianGrid />
           <XAxis
             dataKey="time"
-            name="stature"
+            name="Time"
             unit="h"
             type="category"
             allowDuplicatedCategory={false}
           />
-          <YAxis type="number" dataKey={dataKey} name="weight" unit="" />
+          <YAxis type="number" dataKey={dataKey} name={dataKey} unit="" />
 
           <Tooltip cursor={{ strokeDasharray: "3 3" }} />
           <Legend />

@@ -26,13 +26,17 @@ const CenteredDiv = styled.div`
   height: auto;
   border-radius: 20px;
   padding: 15px 20px;
-  box-shadow: 2px 1px 15px 2px rgb(255 255 255),
-    0px 24px 38px 3px rgb(0 0 0 / 14%), 0px 9px 46px 8px rgb(0 0 0 / 12%);
+  box-shadow: 2px 1px 15px 2px rgb(255 255 255), 0px 24px 38px 3px rgb(0 0 0 / 14%),
+    0px 9px 46px 8px rgb(0 0 0 / 12%);
 
   width: 100%;
   margin: 0.5rem;
-  @media ${device.deviceXs} {
-    width: ${({ size }) => (size === "xs" ? "280px" : "350px")};
+
+  @media ${device.deviceMd} {
+    width: ${({ size }) => " 100%"};
+  }
+  @media ${device.deviceLg} {
+    width: ${({ size }) => (size === "md" ? "350px" : "600px")};
   }
 `;
 
@@ -42,8 +46,7 @@ const Header = styled.h1`
     darkMode ? theme.palette.grey[2] : theme.palette.primary.main};
   margin: 0px 0px 20px 0px;
   font-family: Poppins Bold;
-  color: ${({ theme, darkMode }) =>
-    darkMode ? theme.palette.grey[2] : theme.palette.grey[1]};
+  color: ${({ theme, darkMode }) => (darkMode ? theme.palette.grey[2] : theme.palette.grey[1])};
 `;
 
 const ButtonsRow = styled.div`
@@ -72,7 +75,7 @@ const Modal = ({ children, header, size = "md", onCancel, onAccept }) => {
     modal &&
     reactDom.createPortal(
       <Background>
-        <CenteredDiv size={size} darkMode={darkMode}>
+        <CenteredDiv size={size} darkMode={darkMode} size={size ?? "md"}>
           <Header darkMode={darkMode}>{header}</Header>
           {children}
           <ButtonsRow>
@@ -83,7 +86,7 @@ const Modal = ({ children, header, size = "md", onCancel, onAccept }) => {
           </ButtonsRow>
         </CenteredDiv>
       </Background>,
-      modal
+      modal,
     )
   );
 };
