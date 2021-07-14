@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { withTheme } from "styled-components";
 
-const Label = styled.label`
+export const Label = styled.label`
   color: ${({ theme }) => theme.palette.primary[5]};
   font-family: Poppins Bold;
   display: block;

@@ -13,11 +13,9 @@ import {
 import { MainContext } from "../../contexts/MainContext";
 import Modal from "../../components/Modal";
 import { listOfColorsForCharts } from "../../constants";
+import { Label } from "../../components/Input";
 
 const SelectorWrapper = styled.div``;
-const CustomLabel = styled.label`
-  font-family: Poppins Bold;
-`;
 
 export default function App() {
   const { data, setShowChartModal, showChartModal } = useContext(MainContext);
@@ -34,7 +32,7 @@ export default function App() {
         size="lg"
       >
         <SelectorWrapper>
-          <CustomLabel>Select one category to show</CustomLabel>
+          <Label>Select one category to show</Label>
           <select onChange={(e) => setDataKey(e.target.value)}>
             <option value="consumption" selected={dataKey === "consumption"}>
               consumption
@@ -48,7 +46,7 @@ export default function App() {
           </select>
         </SelectorWrapper>
         <SelectorWrapper>
-          <CustomLabel>Select one or multiple dates to compare with each other</CustomLabel>
+          <Label>Select one or multiple dates to compare with each other</Label>
           <select
             onChange={(e) => {
               const selectedOnes = [...e.target.options]
