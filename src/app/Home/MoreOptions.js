@@ -16,7 +16,7 @@ const Wrapper = styled.div`
   grid-gap: 20px;
 `;
 const MoreOptions = () => {
-  const { setData, setShowChartModal } = useContext(MainContext);
+  const { setData, setShowChartModal, showChartModal } = useContext(MainContext);
   const handleFile = ({ base64, format, name }) => {
     if (format === "csv") {
       return api
@@ -39,7 +39,7 @@ const MoreOptions = () => {
         <Button onClick={() => setShowChartModal(true)} inverse>
           Show charts
         </Button>
-        <ChartModal />
+        {showChartModal && <ChartModal />}
       </Wrapper>
     </>
   );
